@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
+import { OlympicCountryDetailComponent } from './pages/olympic-country-detail/olympic-country-detail.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { PageHeaderComponent } from "./components/page-header/page-header.component";
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [AppComponent, HomeComponent, OlympicCountryDetailComponent, NotFoundComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, PageHeaderComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

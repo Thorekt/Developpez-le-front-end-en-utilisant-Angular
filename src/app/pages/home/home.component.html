@@ -3,7 +3,7 @@
 <p>{{ (olympics$ | async)?.length }} data loaded</p>
 <ul>
   <li *ngFor="let olympic of (olympics$ | async)">
-    {{ olympic.country }} ({{ olympic.participations.length }} participations)
+    <a routerLink="/olympic-country/{{ olympic.id }}">{{ olympic.country }} ({{ olympic.participations.length }} participations)</a>
     <ul>
       <li *ngFor="let participation of olympic.participations">
         {{ participation.year }} - {{ participation.city }} :

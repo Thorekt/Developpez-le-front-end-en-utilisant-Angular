@@ -10,7 +10,7 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: "olympic-country",
+    path: "olympic-country/:id",
     component: OlympicCountryDetailComponent,
   },
   {
@@ -23,4 +23,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
+
 export class AppRoutingModule {}
