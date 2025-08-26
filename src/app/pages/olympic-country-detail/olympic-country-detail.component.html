@@ -1,2 +1,5 @@
 <p>olympic-country-detail works!</p>
 <p>Country ID: {{ countryId }}</p>
+<p *ngIf="olympicCountry$ | async as olympicCountry">
+  <strong>Country:</strong> {{ olympicCountry.country }}<br>
+  
