@@ -10,7 +10,7 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: "OlympicCountry",
+    path: "olympic-country",
     component: OlympicCountryDetailComponent,
   },
   {
