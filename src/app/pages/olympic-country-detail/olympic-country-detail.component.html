@@ -2,4 +2,5 @@
 <p>Country ID: {{ countryId }}</p>
 <p *ngIf="olympicCountry$ | async as olympicCountry">
   <strong>Country:</strong> {{ olympicCountry.country }}<br>
-  
+
+<app-country-line-chart></app-country-line-chart>
