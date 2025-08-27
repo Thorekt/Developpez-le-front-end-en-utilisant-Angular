@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'app/styles/variables' as *;
+
+body {
+    font-family: fantasy;
+    color: $primary-text-color;
+    background-color: $primary-background-color;
+    padding: 0;
+    margin: 0;
+}
