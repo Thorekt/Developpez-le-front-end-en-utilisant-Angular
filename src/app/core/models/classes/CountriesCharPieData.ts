@@ -3,7 +3,10 @@
  */
 export default class CountriesCharPieData {
   constructor(
-    public labels: string[],
-     public datasets: { data: number[] }[]
-    ) {}
+    public data: {
+      id: number,
+      label: string,
+      value: number
+    }[]
+  ) {}
 }

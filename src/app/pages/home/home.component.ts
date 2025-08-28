@@ -63,17 +63,13 @@ export class HomeComponent implements OnInit {
       return null;
     }
 
-    const labels = olympicData.map(item => item.country);
-    const dataset = olympicData.map(item => item.getTotalMedals());
+    const data = olympicData.map((olympic, index) => ({
+      id: olympic.id,
+      label: olympic.country,
+      value: olympic.getTotalMedals()
+    }));
 
-    return {
-      labels,
-      datasets: [
-        {
-          data: dataset
-        }
-      ]
-    };
+    return new CountriesCharPieData(data);
   }
 
   /**

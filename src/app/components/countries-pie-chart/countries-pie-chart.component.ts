@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnDestroy, AfterViewInit, ViewChild, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import Chart from 'chart.js/auto';
 import CountriesCharPieData from 'src/app/core/models/classes/CountriesCharPieData';
 
@@ -13,6 +14,8 @@ export class CountriesPieChartComponent implements AfterViewInit, OnDestroy {
 
   @Input() chartData!: CountriesCharPieData;
 
+  constructor(private router: Router) {}
+
   ngAfterViewInit() {
     const ctx = this.chartPieCanvas?.nativeElement?.getContext('2d');
     if (!ctx) return;
@@ -21,10 +24,18 @@ export class CountriesPieChartComponent implements AfterViewInit, OnDestroy {
     this.chart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: this.chartData.labels,
-        datasets: this.chartData.datasets
+        labels: this.chartData.data.map(item => item.label),
+        datasets: [{
+          data: this.chartData.data.map(item => item.value)
+        }]
       },
       options: {
+         onClick: (_evt, elements) => {
+          if (!elements.length) return;
+          const index = elements[0].index;
+          const country = this.chartData.data[index];
+          this.router.navigate(['/olympic-country', country.id]);
+        },
         responsive: true,
         maintainAspectRatio: true
       }
