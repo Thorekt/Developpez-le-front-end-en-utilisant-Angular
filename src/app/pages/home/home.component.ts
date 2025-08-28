@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   public olympics$: Observable<Olympic[]|null> = of([]);
 
   chartData: CountriesCharPieData | null = null;
+  countriesCount: number = 0;
+  josCount: number = 0;
 
   constructor(private olympicService: OlympicService) {}
 
@@ -30,6 +32,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+   * Display the Olympic pie chart and set the statistics.
+   * @param data 
+   */
   private displayOlympicPieChart(data: Olympic[] | null): void {
     if(data == null){
       // Handle null data case
@@ -42,10 +48,16 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    this.chartData = formattedData;
-    
+    this.josCount = this.getAllParticipationYears(data).length;
+    this.countriesCount = data.length;
+    this.chartData = formattedData;    
   }
 
+  /**
+   * Format the Olympic data for the pie chart.
+   * @param olympicData 
+   * @returns 
+   */
   private getFormatedOlympicData(olympicData: Olympic[] | null): CountriesCharPieData | null {
     if (!olympicData) {
       return null;
@@ -63,4 +75,30 @@ export class HomeComponent implements OnInit {
       ]
     };
   }
+
+  /**
+   * Get all unique participation years from the Olympic data.
+   * 
+   * @param olympicData 
+   * @returns 
+   */
+  private getAllParticipationYears(olympicData: Olympic[] | null): number[] {
+    if (!olympicData) {
+      return [];
+    }
+
+    let years: number[] = [];
+
+    console.log(olympicData);
+
+    olympicData.forEach(olympic => {
+      olympic.getAllParticipationYears().forEach(year => {
+        if (!years.includes(year)) {
+          years.push(year);
+        }
+      });
+    });
+    return years;
+  }
+
 }

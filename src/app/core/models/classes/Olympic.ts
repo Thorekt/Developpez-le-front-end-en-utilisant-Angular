@@ -23,5 +23,15 @@ export default class Olympic{
     getTotalMedals(): number {
         return this.participations.reduce((total, p) => total + p.medalsCount, 0);
     }
+
+    getAllParticipationYears(): number[] {
+        let years: number[] = [];
+        this.participations.forEach(p => {
+            if (!years.includes(p.year)) {
+                years.push(p.year);
+            }
+        });
+        return years;
+    }
 }
 
