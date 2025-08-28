@@ -10,12 +10,15 @@ example of participation:
 */
 
 /**
- * Interface representing a participation in the Olympic Games.
+ * class representing a participation in the Olympic Games.
  */
-export interface IParticipation{
-    id: number;
-    year: number;
-    city: string;
-    medalsCount: number;
-    athleteCount: number;
+export default class Participation{
+
+    constructor(
+        public id: number,
+        public year: number,
+        public city: string,
+        public medalsCount: number,
+        public athleteCount: number
+    ) {}
 }

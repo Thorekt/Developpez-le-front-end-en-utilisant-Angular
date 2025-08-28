@@ -2,19 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
-import { IOlympicCountry } from '../models/Olympic';
+import OlympicCountry from '../models/Olympic';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OlympicService {
   private olympicUrl = './assets/mock/olympic.json';
-  private olympics$ = new BehaviorSubject<IOlympicCountry[]|null>(null);
+  private olympics$ = new BehaviorSubject<OlympicCountry[]|null>(null);
 
   constructor(private http: HttpClient) {}
 
   loadInitialData() {
-    return this.http.get<IOlympicCountry[]|null>(this.olympicUrl).pipe(
+    return this.http.get<OlympicCountry[]|null>(this.olympicUrl).pipe(
       tap((value) => this.olympics$.next(value)),
       catchError((error, caught) => {
         // TODO: improve error handling
@@ -32,7 +32,7 @@ export class OlympicService {
 
   getOlympicById(id: string) {
     return this.olympics$.asObservable().pipe(
-      map((olympics: IOlympicCountry[] | null) => olympics?.find((olympic: IOlympicCountry) => olympic.id === Number(id)) || null)
+      map((olympics: OlympicCountry[] | null) => olympics?.find((olympic: OlympicCountry) => olympic.id === Number(id)) || null)
     );
   }
 }

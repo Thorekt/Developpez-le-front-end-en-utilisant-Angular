@@ -8,14 +8,16 @@ example of an olympic country:
 }
 */
 
-import { IParticipation } from "./Participation";
+import Participation from "./Participation";
 
 
 /**
- * Interface representing an Olympic country.
+ * class representing an Olympic country.
  */
-export interface IOlympicCountry{
-    id: number;
-    country: string;
-    participations: IParticipation[];
+export default class OlympicCountry{
+    constructor(
+        public id: number,
+        public country: string,
+        public participations: Participation[]
+    ) {}
 }

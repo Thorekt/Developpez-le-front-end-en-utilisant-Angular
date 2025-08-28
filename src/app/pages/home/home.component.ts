@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IOlympicCountry } from 'src/app/core/models/Olympic';
+import OlympicCountry from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
     standalone: false
 })
 export class HomeComponent implements OnInit {
-  public olympics$: Observable<IOlympicCountry[]|null> = of([]);
+  public olympics$: Observable<OlympicCountry[]|null> = of([]);
 
   constructor(private olympicService: OlympicService) {}
 
