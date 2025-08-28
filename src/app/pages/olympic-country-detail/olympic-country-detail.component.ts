@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import OlympicCountry from 'src/app/core/models/Olympic';
+import Olympic from 'src/app/core/models/classes/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 
 
@@ -12,7 +12,7 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
     standalone: false
 })
 export class OlympicCountryDetailComponent implements OnInit {
-  public olympicCountry$: Observable<OlympicCountry|null> = of(null);
+  public olympicCountry$: Observable<Olympic|null> = of(null);
   countryId: string | null = null;
 
   constructor(private route: ActivatedRoute, private olympicService: OlympicService) { }

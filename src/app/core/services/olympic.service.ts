@@ -1,20 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
-import OlympicCountry from '../models/Olympic';
+import Olympic from '../models/classes/Olympic';
+import IOlympic from '../models/interfaces/IOlympic';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OlympicService {
   private olympicUrl = './assets/mock/olympic.json';
-  private olympics$ = new BehaviorSubject<OlympicCountry[]|null>(null);
+  private olympics$ = new BehaviorSubject<Olympic[]|null>(null);
 
   constructor(private http: HttpClient) {}
 
-  loadInitialData() {
-    return this.http.get<OlympicCountry[]|null>(this.olympicUrl).pipe(
+  loadInitialData(): Observable<IOlympic[]|null> {
+    return this.http.get<IOlympic[]|null>(this.olympicUrl).pipe(
+      map((dtos) => (dtos ?? []).map((dto) => Olympic.fromServiceData(dto))),
       tap((value) => this.olympics$.next(value)),
       catchError((error, caught) => {
         // TODO: improve error handling
@@ -26,13 +28,13 @@ export class OlympicService {
     );
   }
 
-  getOlympics() {
+  getOlympics(): Observable<Olympic[] | null> {
     return this.olympics$.asObservable();
   }
 
-  getOlympicById(id: string) {
+  getOlympicById(id: string): Observable<Olympic|null> {
     return this.olympics$.asObservable().pipe(
-      map((olympics: OlympicCountry[] | null) => olympics?.find((olympic: OlympicCountry) => olympic.id === Number(id)) || null)
+      map((olympics: Olympic[] | null) => olympics?.find((olympic: Olympic) => olympic.id === Number(id)) || null)
     );
   }
 }

@@ -1,13 +1,4 @@
-/*
-example of participation:
-{
-    id: 1,
-    year: 2012,
-    city: "Londres",
-    medalsCount: 28,
-    athleteCount: 372
-}
-*/
+import IParticipation from "../interfaces/IParticipation";
 
 /**
  * class representing a participation in the Olympic Games.
@@ -21,4 +12,14 @@ export default class Participation{
         public medalsCount: number,
         public athleteCount: number
     ) {}
+
+    static fromServiceData(data: IParticipation) {
+        return new Participation(
+            data.id,
+            data.year,
+            data.city,
+            data.medalsCount,
+            data.athleteCount
+        );
+    }
 }
