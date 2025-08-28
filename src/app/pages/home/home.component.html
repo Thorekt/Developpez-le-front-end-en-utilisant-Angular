@@ -13,4 +13,8 @@
   </li>
 </ul>
 
-<app-countries-pie-chart></app-countries-pie-chart>
+@if (chartData) {
+  <app-countries-pie-chart [chartData]="chartData"></app-countries-pie-chart>
+}@else {
+  <p>No chart data available</p>
+}
