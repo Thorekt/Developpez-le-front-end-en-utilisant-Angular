@@ -14,6 +14,7 @@ export class CountriesPieChartComponent implements AfterViewInit, OnDestroy {
     const ctx = this.chartPieCanvas?.nativeElement?.getContext('2d');
     if (!ctx) return;
 
+
     this.chart = new Chart(ctx, {
       type: 'pie',
       data: {
