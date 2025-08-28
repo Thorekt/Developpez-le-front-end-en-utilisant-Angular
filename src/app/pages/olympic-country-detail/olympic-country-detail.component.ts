@@ -6,9 +6,10 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 
 
 @Component({
-  selector: 'app-olympic-country-detail',
-  templateUrl: './olympic-country-detail.component.html',
-  styleUrl: './olympic-country-detail.component.scss'
+    selector: 'app-olympic-country-detail',
+    templateUrl: './olympic-country-detail.component.html',
+    styleUrl: './olympic-country-detail.component.scss',
+    standalone: false
 })
 export class OlympicCountryDetailComponent implements OnInit {
   public olympicCountry$: Observable<IOlympicCountry|null> = of(null);
