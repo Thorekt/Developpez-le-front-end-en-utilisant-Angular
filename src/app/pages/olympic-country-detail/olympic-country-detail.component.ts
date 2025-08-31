@@ -59,7 +59,7 @@ export class OlympicCountryDetailComponent implements OnInit {
 
     this.chartData = formattedData;
 
-    this.dataDisplayerData = new DataDisplayerData('Medals per Country',
+    this.dataDisplayerData = new DataDisplayerData(data.country,
       [
         {
           name: 'Number of entries',

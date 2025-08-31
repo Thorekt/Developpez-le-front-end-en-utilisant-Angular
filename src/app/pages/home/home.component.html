@@ -1,9 +1,11 @@
-@if(dataDisplayerData) {
-  <app-data-displayer [DataDisplayerData]="dataDisplayerData"></app-data-displayer>
-}
+<section class="page-content">
+  @if(dataDisplayerData) {
+    <app-data-displayer [DataDisplayerData]="dataDisplayerData"></app-data-displayer>
+  }
 
-@if (chartData) {
-  <app-countries-pie-chart [chartData]="chartData"></app-countries-pie-chart>
-}@else {
-  <p>No chart data available</p>
-}
+  @if (chartData) {
+    <app-countries-pie-chart [chartData]="chartData"></app-countries-pie-chart>
+  }@else {
+    <p>No chart data available</p>
+  }
+</section>

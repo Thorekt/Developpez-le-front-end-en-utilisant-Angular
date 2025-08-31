@@ -2,9 +2,16 @@
 @use 'app/styles/variables' as *;
 
 body {
-    font-family: fantasy;
+    font-family: 'Segoe UI';
     color: $primary-text-color;
     background-color: $primary-background-color;
     padding: 0;
     margin: 0;
+}
+
+.page-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
 }

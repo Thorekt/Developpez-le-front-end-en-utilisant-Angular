@@ -1,13 +1,16 @@
-@if (dataDisplayerData){
-  <app-data-displayer [DataDisplayerData]="dataDisplayerData"></app-data-displayer>
-}
 
-@if (chartData) {
-  <app-country-line-chart [chartData]="chartData"></app-country-line-chart>
-}@else {
-  <p>No chart data available</p>
-}
+<section class="page-content">
+  @if (dataDisplayerData){
+    <app-data-displayer [DataDisplayerData]="dataDisplayerData"></app-data-displayer>
+  }
 
-<div>
-  <a routerLink="/">Back to Dashboard</a>
-</div>
+  @if (chartData) {
+    <app-country-line-chart [chartData]="chartData"></app-country-line-chart>
+  }@else {
+    <p>No chart data available</p>
+  }
+
+  <div>
+    <a class="back-button" routerLink="/">Go back</a>
+  </div>
+</section>
