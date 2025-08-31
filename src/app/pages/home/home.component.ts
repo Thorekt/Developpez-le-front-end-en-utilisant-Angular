@@ -3,6 +3,8 @@ import { Observable, of } from 'rxjs';
 import Olympic from 'src/app/core/models/classes/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import CountriesCharPieData from 'src/app/core/models/classes/CountriesCharPieData';
+import { DataDisplayerComponent } from 'src/app/components/data-displayer/data-displayer.component';
+import DataDisplayerData from 'src/app/core/models/classes/DataDisplayerData';
 
 @Component({
     selector: 'app-home',
@@ -14,6 +16,7 @@ export class HomeComponent implements OnInit {
   public olympics$: Observable<Olympic[]|null> = of([]);
 
   chartData: CountriesCharPieData | null = null;
+  dataDisplayerData: DataDisplayerData | null = null;
   countriesCount: number = 0;
   josCount: number = 0;
 
@@ -48,8 +51,19 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    this.josCount = this.getAllParticipationYears(data).length;
-    this.countriesCount = data.length;
+    this.dataDisplayerData = new DataDisplayerData('Medals per Country',
+      [
+        {
+          name: 'Number of JOs',
+          value: this.getAllParticipationYears(data).length.toString()
+        },
+        {
+          name: 'Number of countries',
+          value: data.length.toString()
+        }
+      ]
+    )
+
     this.chartData = formattedData;    
   }
 
@@ -84,9 +98,7 @@ export class HomeComponent implements OnInit {
     }
 
     let years: number[] = [];
-
-    console.log(olympicData);
-
+    
     olympicData.forEach(olympic => {
       olympic.getAllParticipationYears().forEach(year => {
         if (!years.includes(year)) {

@@ -1,0 +1,11 @@
+  <div class="data-displayer">
+    <h2>{{ DataDisplayerData.title }}</h2>
+    <div class="data-items">
+        @for (item of DataDisplayerData.data; track $index) {
+          <div class="data-item">
+            <h3>{{ item.name }}</h3>
+            <span>{{ item.value }}</span>
+          </div>
+        }
+    </div>
+  </div>

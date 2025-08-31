@@ -9,10 +9,11 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PageHeaderComponent } from "./components/page-header/page-header.component";
 import { CountriesPieChartComponent } from "src/app/components/countries-pie-chart/countries-pie-chart.component";
 import { CountryLineChartComponent } from "src/app/components/country-line-chart/country-line-chart.component";
+import { DataDisplayerComponent } from "src/app/components/data-displayer/data-displayer.component";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, OlympicCountryDetailComponent, NotFoundComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, PageHeaderComponent, CountriesPieChartComponent, CountryLineChartComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, PageHeaderComponent, CountriesPieChartComponent, CountryLineChartComponent, DataDisplayerComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

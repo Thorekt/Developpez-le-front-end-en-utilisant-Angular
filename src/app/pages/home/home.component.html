@@ -1,15 +1,8 @@
+@if(dataDisplayerData) {
+  <app-data-displayer [DataDisplayerData]="dataDisplayerData"></app-data-displayer>
+}
+
 @if (chartData) {
-  <div>
-    <h2>Medals per Country</h2>
-    <div>
-      <h3>Number of JOs</h3>
-      <span>{{ josCount }}</span>
-    </div>
-    <div>
-      <h3>Number of countries</h3>
-      <span>{{ countriesCount }}</span>
-    </div>
-  </div>
   <app-countries-pie-chart [chartData]="chartData"></app-countries-pie-chart>
 }@else {
   <p>No chart data available</p>
