@@ -33,5 +33,13 @@ export default class Olympic{
         });
         return years;
     }
+
+    getTotalParticipations(): number {
+        return this.participations.length;
+    }
+
+    getTotalAthletes(): number {
+        return this.participations.reduce((total, p) => total + p.athleteCount, 0);
+    }
 }
 

@@ -1,6 +1,13 @@
-<p>olympic-country-detail works!</p>
-<p>Country ID: {{ countryId }}</p>
-<p *ngIf="olympicCountry$ | async as olympicCountry">
-  <strong>Country:</strong> {{ olympicCountry.country }}<br>
+@if (dataDisplayerData){
+  <app-data-displayer [DataDisplayerData]="dataDisplayerData"></app-data-displayer>
+}
 
-<app-country-line-chart></app-country-line-chart>
+@if (chartData) {
+  <app-country-line-chart [chartData]="chartData"></app-country-line-chart>
+}@else {
+  <p>No chart data available</p>
+}
+
+<div>
+  <a routerLink="/">Back to Dashboard</a>
+</div>
