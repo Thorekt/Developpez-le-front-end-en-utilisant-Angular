@@ -10,10 +10,11 @@ import { PageHeaderComponent } from "./components/page-header/page-header.compon
 import { CountriesPieChartComponent } from "src/app/components/countries-pie-chart/countries-pie-chart.component";
 import { CountryLineChartComponent } from "src/app/components/country-line-chart/country-line-chart.component";
 import { DataDisplayerComponent } from "src/app/components/data-displayer/data-displayer.component";
+import { ReturnButtonComponent } from './components/return-button/return-button.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, OlympicCountryDetailComponent, NotFoundComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, PageHeaderComponent, CountriesPieChartComponent, CountryLineChartComponent, DataDisplayerComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, PageHeaderComponent, CountriesPieChartComponent, CountryLineChartComponent, DataDisplayerComponent, ReturnButtonComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
