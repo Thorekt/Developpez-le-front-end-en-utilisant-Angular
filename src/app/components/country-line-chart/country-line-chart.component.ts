@@ -35,7 +35,26 @@ export class CountryLineChartComponent implements AfterViewInit, OnDestroy {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
+        plugins: {
+          legend: { 
+            display: false 
+          },
+          tooltip: {
+            displayColors: false,
+            xAlign: 'center',
+            yAlign: 'bottom',
+            backgroundColor: '#106d72',
+            bodyAlign: 'center',
+            titleAlign: 'center',
+            titleFont: { size: 16, weight: 'normal', family: 'Segoe UI' },
+            bodyFont: { size: 16, weight: 'normal', family: 'Segoe UI' },
+            padding: 10,
+            callbacks: {
+              label: (ctx) => `🏅${ctx.parsed.y}`
+              
+            }
+          }
+        },
         elements: {
           point: {
             radius: 0,

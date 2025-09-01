@@ -1,19 +1,37 @@
 .chart-wrapper {
     position: relative;
-    width: 500px;
-    height: 250px;
+    width: 70vw;
+    height: 50vh;
+}
+
+@media screen and (max-width: 1100px) {
+    .chart-wrapper {
+        width: 600px;
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .chart-wrapper {
+        width: 500px;
+        height: 200px;
+    }
 }
 
 @media screen and (max-width: 500px) {
     .chart-wrapper {
-        width: 320px;
-        height: 200px;
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .chart-wrapper {
+        width: 300px;
     }
 }
 
 @media screen and (max-width: 320px) {
     .chart-wrapper {
         width: 280px;
-        height: 180px;
     }
 }
