@@ -16,7 +16,7 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 
 export class OlympicCountryDetailComponent implements OnInit {
   public olympicCountry$: Observable<Olympic|null> = of(null);
-  countryId: string | null = null;
+  countryId: number | null = null;
   dataDisplayerData: DataDisplayerData | null = null;
   chartData: CountryLineChartData | null = null;
 
@@ -27,8 +27,9 @@ export class OlympicCountryDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.countryId = this.route.snapshot.params['id'];
-    if( this.countryId == null){
+    this.countryId = Number(this.route.snapshot.params['id']);
+
+    if(!Number.isInteger(this.countryId) || this.countryId < 0) {
       this.router.navigate(['/404']);
       return;
     }
@@ -38,12 +39,14 @@ export class OlympicCountryDetailComponent implements OnInit {
     this.olympicCountry$.subscribe({
       next: (data) => {
         if (!data) {
+          console.error('No Olympic data found for country ID:', this.countryId);
           this.router.navigate(['/404']);
           return;
         }
         this.displayOlympicLineChart(data);
       },
-      error: () => {
+      error: (e) => {
+        console.error('Error fetching Olympic data', e);
         this.router.navigate(['/404']);
       },
     });
