@@ -37,9 +37,82 @@
     margin: 0;
     color: $secondary-text-color;
     font-weight: 350;
+    font-size: 1.2rem;
 }
 
 .data-item span{
     color: $primary-text-color;
     font-weight: 900;
+    font-size: 1.5rem;
 }
+
+@media screen and (max-width: 650px) {
+    .data-displayer h2 {
+        font-size: 1.5rem;
+    }
+
+    .data-items{
+        gap: 12px;
+    }
+
+    .data-item {
+        padding: 6px;
+        gap: 6px;
+    }
+
+    .data-item h3{
+        font-size: 1rem;
+    }
+
+    .data-item span{
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 530px) {
+
+    .data-items{
+        gap: 10px;
+    }
+
+    .data-item {
+        padding: 4px;
+        gap: 6px;
+    }
+
+    .data-item h3{
+        font-size: 0.8rem;
+    }
+
+    .data-item span{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 410px) {
+
+    .data-items{
+        gap: 8px;
+    }
+
+    .data-item {
+        padding: 4px;
+        gap: 6px;
+    }
+
+    .data-item h3{
+        font-size: 0.6rem;
+    }
+
+    .data-item span{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .data-items{
+        gap: 4px;
+    }
+}
+

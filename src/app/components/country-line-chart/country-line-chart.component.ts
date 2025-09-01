@@ -22,21 +22,47 @@ export class CountryLineChartComponent implements AfterViewInit, OnDestroy {
     this.chart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: this.chartData.labels,
+        labels:  this.chartData.labels,
         datasets: [
           {
             label: 'Participation',
             data: this.chartData.data,
+            borderColor: '#793d52',
+            spanGaps: true,
           },
         ],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: true } },
+        plugins: { legend: { display: false } },
+        elements: {
+          point: {
+            radius: 0,
+          }
+        },
+        
         scales: {
-          x: { title: { display: true, text: 'Dates' } },
-          y: { beginAtZero: false },
+          x: { 
+            title: { 
+              display: true, 
+              text: 'Dates',
+              color: '#9e9e9e',
+              font: { size: 20, weight: 500, family: 'Segoe UI' }
+            },
+            border:{
+              display: false
+            },
+            beginAtZero: false,
+            grace: '20%',
+          },
+          y: {
+            beginAtZero: false,
+            border: {
+              display: false
+            },
+            grace: '20%'
+          },
         },
       },
     });

@@ -11,7 +11,7 @@ const externalLabelsPlugin = {
     if (!ds || !ds.data) return;
 
     ctx.save();
-    ctx.font = '20px Segoe UI';
+    ctx.font = `${getFontSize(chart.width)}px Segoe UI`;
     ctx.textBaseline = 'middle';
     ctx.fillStyle = '#273238';
     ctx.lineWidth = 2;
@@ -25,12 +25,12 @@ const externalLabelsPlugin = {
       const angle = (startAngle + endAngle) / 2;
 
       // Point de départ du trait (juste au bord du donut)
-      const p1x = x + Math.cos(angle) * (outerRadius ); // ou +6 si tu veux un petit espace
+      const p1x = x + Math.cos(angle) * (outerRadius );
       const p1y = y + Math.sin(angle) * (outerRadius -10);
 
       // Extrémité du trait horizontal
       const rightSide = Math.cos(angle) >= 0;
-      const hLen = 60;
+      const hLen = getHLen(chart.width);
       const p2x = p1x + (rightSide ? hLen : -hLen);
       const p2y = p1y;
 
@@ -79,8 +79,7 @@ export class CountriesPieChartComponent implements AfterViewInit, OnDestroy {
         datasets: [{
           data: this.chartData.data.map(item => item.value),
           backgroundColor: ['#793d52','#956065','#89a2db','#9780a1','#bfe0f1','#b8cbe7'],
-          hoverBackgroundColor: ['#793d52','#956065','#89a2db','#9780a1','#bfe0f1','#b8cbe7'],
-          borderWidth: 0
+          hoverBackgroundColor: ['#793d52','#956065','#89a2db','#9780a1','#bfe0f1','#b8cbe7'],          
         }]
       },
       options: {
@@ -92,6 +91,12 @@ export class CountriesPieChartComponent implements AfterViewInit, OnDestroy {
         },
         responsive: true,
         maintainAspectRatio: false,
+        elements:{
+          arc: { 
+            borderWidth: 0,
+            offset: 0
+          }
+        },
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -118,4 +123,36 @@ export class CountriesPieChartComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.chart?.destroy();
   }
+}
+
+
+// Thresholds for responsive design
+const tresholds = [
+  { width: 1000, fontSize: 28 },
+    { width: 600, fontSize: 24 },
+    { width: 500, fontSize: 20 },
+    { width: 400, fontSize: 16 },
+    { width: 300, fontSize: 12 },
+    { width: 200, fontSize: 8 }
+  ];
+
+/**
+ * Get the horizontal length for the labels lines based on the canvas width.
+ * @param canvasWidth The width of the canvas.
+ * @returns The horizontal length for the labels lines.
+ */
+function getHLen(canvasWidth: number): number {
+  return canvasWidth / 10;
+}
+
+/**
+ * Get the font size for the labels based on the canvas width.
+ * @param canvasWidth The width of the canvas.
+ * @returns The font size for the labels.
+ */
+function getFontSize(canvasWidth: number): number {
+  for (const t of tresholds) {
+    if (canvasWidth >= t.width) return t.fontSize;
+  }
+  return 24;
 }

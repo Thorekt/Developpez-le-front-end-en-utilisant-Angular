@@ -43,6 +43,7 @@
 .page-header nav a{
     color: $primary-text-color;
     margin: 0;
+    font-size: 20px;
     padding: 0 20px;
     display: flex;
     flex-direction: row;
@@ -56,3 +57,35 @@
     color: $tertiary-text-color;
 }
 
+@media screen and (max-width: 600px) {
+    .page-header{
+        height: 40px;
+    }
+
+    .page-header h1 {
+        font-size: 20px;
+        padding: 0 15px;
+    }
+
+    .page-header nav a {
+        font-size: 16px;
+        padding: 0 15px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+    .page-header {
+        height: 32px;
+    }
+
+    .page-header h1 {
+        font-size: 16px;
+        padding: 0 10px;
+    }
+
+    .page-header nav a {
+        font-size: 12px;
+        padding: 0 10px;
+    }
+}

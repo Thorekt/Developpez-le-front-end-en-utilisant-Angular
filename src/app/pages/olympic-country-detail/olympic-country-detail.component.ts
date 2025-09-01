@@ -85,11 +85,11 @@ export class OlympicCountryDetailComponent implements OnInit {
       return null;
     }
 
-    const labels: string[] = [];
+    const labels: number[] = [];
     const data: number[] = [];
 
     for (const participation of olympicData.participations) {
-      labels.push(participation.year.toString());
+      labels.push(participation.year);
       data.push(participation.medalsCount);
     }
 

@@ -3,7 +3,7 @@
  */
 export default class CountryLineChartData {
   constructor(
-    public labels: string[],
+    public labels: number[],
     public data: number[]
   ) {}
 }
