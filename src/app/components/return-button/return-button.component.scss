@@ -11,10 +11,23 @@
     font-weight: 500;
     font-size: 18px;
     border: 2px solid $tertiary-background-color;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     border-radius: 16px;
 }
 
 .return-button a:hover {
     background-color: $tertiary-background-color;
     color: $tertiary-text-color;
+}
+
+@media (max-width: 768px) {
+  .return-button {
+    position: fixed;
+    right: calc(16px + env(safe-area-inset-right, 0));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0));
+    margin: 10px;
+    z-index: 1000;
+    pointer-events: auto;
+  }
+
 }
