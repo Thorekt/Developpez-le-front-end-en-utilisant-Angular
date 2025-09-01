@@ -87,6 +87,10 @@ export class CountryLineChartComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  /**
+   * Lifecycle hook that is called when the component is destroyed.
+   * destroys the chart instance.
+   */
   ngOnDestroy(): void {
     this.chart?.destroy();
   }

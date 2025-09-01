@@ -52,6 +52,11 @@ export class OlympicCountryDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * Displays the Olympic line chart for the given data.
+   * @param data The Olympic data to display.
+   * @returns void
+   */
   private displayOlympicLineChart(data: Olympic): void {
     console.log(data);
     const formattedData = this.getFormatedOlympicData(data);
@@ -80,6 +85,11 @@ export class OlympicCountryDetailComponent implements OnInit {
     );
   }
 
+  /**
+   * Formats the Olympic data for the line chart.
+   * @param olympicData The Olympic data to format.
+   * @returns The formatted data for the line chart.
+   */
   private getFormatedOlympicData(olympicData: Olympic | null): CountryLineChartData | null {
     if (!olympicData) {
       return null;

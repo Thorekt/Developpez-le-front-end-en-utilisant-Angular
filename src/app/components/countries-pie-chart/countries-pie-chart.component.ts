@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import Chart from 'chart.js/auto';
 import CountriesCharPieData from 'src/app/core/models/classes/CountriesCharPieData';
 
+/**
+ * Plugin pour afficher les étiquettes externes sur le graphique en secteurs
+ */
 const externalLabelsPlugin = {
   id: 'externalLabels',
   afterDatasetsDraw(chart: Chart) {
@@ -119,7 +122,10 @@ export class CountriesPieChartComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-
+  /**
+   * Lifecycle hook that is called when the component is destroyed.
+   * destroys the chart instance.
+   */
   ngOnDestroy() {
     this.chart?.destroy();
   }
