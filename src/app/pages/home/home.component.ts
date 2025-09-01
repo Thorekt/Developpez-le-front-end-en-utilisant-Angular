@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, of, Subscription } from 'rxjs';
 import Olympic from 'src/app/core/models/classes/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import CountriesCharPieData from 'src/app/core/models/classes/CountriesCharPieData';
@@ -14,6 +14,7 @@ import DataDisplayerData from 'src/app/core/models/classes/DataDisplayerData';
 })
 export class HomeComponent implements OnInit {
   public olympics$: Observable<Olympic[]|null> = of([]);
+  private olympicsSubcription: Subscription = new Subscription();
 
   chartData: CountriesCharPieData | null = null;
   dataDisplayerData: DataDisplayerData | null = null;
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.olympics$ = this.olympicService.getOlympics();
 
-    this.olympics$.subscribe({
+    this.olympicsSubcription = this.olympics$.subscribe({
       next: (data) => {
         this.displayOlympicPieChart(data);
       },
@@ -33,6 +34,13 @@ export class HomeComponent implements OnInit {
         this.displayOlympicPieChart(null);
       }
     });
+  }
+
+  /**
+   * Lifecycle hook that is called when the component is destroyed.
+   */
+  ngOnDestroy(): void {
+    this.olympicsSubcription.unsubscribe();
   }
 
   /**

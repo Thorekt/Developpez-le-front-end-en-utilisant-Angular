@@ -1,6 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import CountryLineChartData from 'src/app/core/models/classes/CountryLineChartData';
 import DataDisplayerData from 'src/app/core/models/classes/DataDisplayerData';
 import Olympic from 'src/app/core/models/classes/Olympic';
@@ -16,6 +16,8 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 
 export class OlympicCountryDetailComponent implements OnInit {
   public olympicCountry$: Observable<Olympic|null> = of(null);
+  private olympicCountrySubscription: Subscription = new Subscription();
+
   countryId: number | null = null;
   dataDisplayerData: DataDisplayerData | null = null;
   chartData: CountryLineChartData | null = null;
@@ -36,7 +38,7 @@ export class OlympicCountryDetailComponent implements OnInit {
 
     this.olympicCountry$ = this.olympicService.getOlympicById(this.countryId);
 
-    this.olympicCountry$.subscribe({
+    this.olympicCountrySubscription = this.olympicCountry$.subscribe({
       next: (data) => {
         if (!data) {
           console.error('No Olympic data found for country ID:', this.countryId);
@@ -50,6 +52,13 @@ export class OlympicCountryDetailComponent implements OnInit {
         this.router.navigate(['/404']);
       },
     });
+  }
+
+  /**
+   * Lifecycle hook that is called when the component is destroyed.
+   */
+  ngOnDestroy(): void {
+    this.olympicCountrySubscription.unsubscribe();
   }
 
   /**
