@@ -13,6 +13,11 @@ export default class Participation{
         public athleteCount: number
     ) {}
 
+    /**
+     * Creates a Participation instance from the service data.
+     * @param data The service data to transform.
+     * @returns A Participation instance.
+     */
     static fromServiceData(data: IParticipation) {
         return new Participation(
             data.id,
